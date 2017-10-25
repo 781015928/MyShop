@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.czg.myshop.dao.ProductSpecMapper" >
+  <resultMap id="BaseResultMap" type="com.czg.myshop.model.ProductSpec" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="VARCHAR" />
+    <result column="updatetime" property="updatetime" jdbcType="VARCHAR" />
+    <result column="deletestate" property="deletestate" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="REAL" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.czg.myshop.model.ProductSpecWithBLOBs" extends="BaseResultMap" >
+    <result column="color" property="color" jdbcType="LONGVARCHAR" />
+    <result column="modeltype" property="modeltype" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, createtime, updatetime, deletestate, product_id, price, count
+  </sql>
+  <sql id="Blob_Column_List" >
+    color, modeltype
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.czg.myshop.model.ProductSpecExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_product_spec
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.czg.myshop.model.ProductSpecExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_product_spec
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_product_spec
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_product_spec
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.czg.myshop.model.ProductSpecExample" >
+    delete from t_product_spec
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.czg.myshop.model.ProductSpecWithBLOBs" >
+    insert into t_product_spec (id, createtime, updatetime, 
+      deletestate, product_id, price, 
+      count, color, modeltype
+      )
+    values (#{id,jdbcType=INTEGER}, #{createtime,jdbcType=VARCHAR}, #{updatetime,jdbcType=VARCHAR}, 
+      #{deletestate,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{price,jdbcType=REAL}, 
+      #{count,jdbcType=INTEGER}, #{color,jdbcType=LONGVARCHAR}, #{modeltype,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.czg.myshop.model.ProductSpecWithBLOBs" >
+    insert into t_product_spec
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="deletestate != null" >
+        deletestate,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="color != null" >
+        color,
+      </if>
+      <if test="modeltype != null" >
+        modeltype,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="deletestate != null" >
+        #{deletestate,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="color != null" >
+        #{color,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="modeltype != null" >
+        #{modeltype,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.czg.myshop.model.ProductSpecExample" resultType="java.lang.Integer" >
+    select count(*) from t_product_spec
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_product_spec
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatetime != null" >
+        updatetime = #{record.updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deletestate != null" >
+        deletestate = #{record.deletestate,jdbcType=INTEGER},
+      </if>
+      <if test="record.productId != null" >
+        product_id = #{record.productId,jdbcType=INTEGER},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=REAL},
+      </if>
+      <if test="record.count != null" >
+        count = #{record.count,jdbcType=INTEGER},
+      </if>
+      <if test="record.color != null" >
+        color = #{record.color,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.modeltype != null" >
+        modeltype = #{record.modeltype,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update t_product_spec
+    set id = #{record.id,jdbcType=INTEGER},
+      createtime = #{record.createtime,jdbcType=VARCHAR},
+      updatetime = #{record.updatetime,jdbcType=VARCHAR},
+      deletestate = #{record.deletestate,jdbcType=INTEGER},
+      product_id = #{record.productId,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=REAL},
+      count = #{record.count,jdbcType=INTEGER},
+      color = #{record.color,jdbcType=LONGVARCHAR},
+      modeltype = #{record.modeltype,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_product_spec
+    set id = #{record.id,jdbcType=INTEGER},
+      createtime = #{record.createtime,jdbcType=VARCHAR},
+      updatetime = #{record.updatetime,jdbcType=VARCHAR},
+      deletestate = #{record.deletestate,jdbcType=INTEGER},
+      product_id = #{record.productId,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=REAL},
+      count = #{record.count,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.czg.myshop.model.ProductSpecWithBLOBs" >
+    update t_product_spec
+    <set >
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="deletestate != null" >
+        deletestate = #{deletestate,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=REAL},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="color != null" >
+        color = #{color,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="modeltype != null" >
+        modeltype = #{modeltype,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.czg.myshop.model.ProductSpecWithBLOBs" >
+    update t_product_spec
+    set createtime = #{createtime,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=VARCHAR},
+      deletestate = #{deletestate,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=INTEGER},
+      price = #{price,jdbcType=REAL},
+      count = #{count,jdbcType=INTEGER},
+      color = #{color,jdbcType=LONGVARCHAR},
+      modeltype = #{modeltype,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.czg.myshop.model.ProductSpec" >
+    update t_product_spec
+    set createtime = #{createtime,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=VARCHAR},
+      deletestate = #{deletestate,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=INTEGER},
+      price = #{price,jdbcType=REAL},
+      count = #{count,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

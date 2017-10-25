@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.czg.myshop.dao.SellerMapper" >
+  <resultMap id="BaseResultMap" type="com.czg.myshop.model.Seller" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="VARCHAR" />
+    <result column="updatetime" property="updatetime" jdbcType="VARCHAR" />
+    <result column="deletestate" property="deletestate" jdbcType="INTEGER" />
+    <result column="imgurl" property="imgurl" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="shopname" property="shopname" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="REAL" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.czg.myshop.model.SellerWithBLOBs" extends="BaseResultMap" >
+    <result column="intro" property="intro" jdbcType="LONGVARCHAR" />
+    <result column="uid" property="uid" jdbcType="LONGVARCHAR" />
+    <result column="descrip" property="descrip" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, createtime, updatetime, deletestate, imgurl, name, shopname, state, money
+  </sql>
+  <sql id="Blob_Column_List" >
+    intro, uid, descrip
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.czg.myshop.model.SellerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_seller
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.czg.myshop.model.SellerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_seller
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_seller
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_seller
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.czg.myshop.model.SellerExample" >
+    delete from t_seller
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.czg.myshop.model.SellerWithBLOBs" >
+    insert into t_seller (id, createtime, updatetime, 
+      deletestate, imgurl, name, 
+      shopname, state, money, 
+      intro, uid, descrip
+      )
+    values (#{id,jdbcType=INTEGER}, #{createtime,jdbcType=VARCHAR}, #{updatetime,jdbcType=VARCHAR}, 
+      #{deletestate,jdbcType=INTEGER}, #{imgurl,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{shopname,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{money,jdbcType=REAL}, 
+      #{intro,jdbcType=LONGVARCHAR}, #{uid,jdbcType=LONGVARCHAR}, #{descrip,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.czg.myshop.model.SellerWithBLOBs" >
+    insert into t_seller
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="deletestate != null" >
+        deletestate,
+      </if>
+      <if test="imgurl != null" >
+        imgurl,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="shopname != null" >
+        shopname,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="intro != null" >
+        intro,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="descrip != null" >
+        descrip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="deletestate != null" >
+        #{deletestate,jdbcType=INTEGER},
+      </if>
+      <if test="imgurl != null" >
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shopname != null" >
+        #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=REAL},
+      </if>
+      <if test="intro != null" >
+        #{intro,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="descrip != null" >
+        #{descrip,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.czg.myshop.model.SellerExample" resultType="java.lang.Integer" >
+    select count(*) from t_seller
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_seller
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatetime != null" >
+        updatetime = #{record.updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deletestate != null" >
+        deletestate = #{record.deletestate,jdbcType=INTEGER},
+      </if>
+      <if test="record.imgurl != null" >
+        imgurl = #{record.imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopname != null" >
+        shopname = #{record.shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.money != null" >
+        money = #{record.money,jdbcType=REAL},
+      </if>
+      <if test="record.intro != null" >
+        intro = #{record.intro,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.uid != null" >
+        uid = #{record.uid,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.descrip != null" >
+        descrip = #{record.descrip,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update t_seller
+    set id = #{record.id,jdbcType=INTEGER},
+      createtime = #{record.createtime,jdbcType=VARCHAR},
+      updatetime = #{record.updatetime,jdbcType=VARCHAR},
+      deletestate = #{record.deletestate,jdbcType=INTEGER},
+      imgurl = #{record.imgurl,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      shopname = #{record.shopname,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=INTEGER},
+      money = #{record.money,jdbcType=REAL},
+      intro = #{record.intro,jdbcType=LONGVARCHAR},
+      uid = #{record.uid,jdbcType=LONGVARCHAR},
+      descrip = #{record.descrip,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_seller
+    set id = #{record.id,jdbcType=INTEGER},
+      createtime = #{record.createtime,jdbcType=VARCHAR},
+      updatetime = #{record.updatetime,jdbcType=VARCHAR},
+      deletestate = #{record.deletestate,jdbcType=INTEGER},
+      imgurl = #{record.imgurl,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      shopname = #{record.shopname,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=INTEGER},
+      money = #{record.money,jdbcType=REAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.czg.myshop.model.SellerWithBLOBs" >
+    update t_seller
+    <set >
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="deletestate != null" >
+        deletestate = #{deletestate,jdbcType=INTEGER},
+      </if>
+      <if test="imgurl != null" >
+        imgurl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shopname != null" >
+        shopname = #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=REAL},
+      </if>
+      <if test="intro != null" >
+        intro = #{intro,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="descrip != null" >
+        descrip = #{descrip,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.czg.myshop.model.SellerWithBLOBs" >
+    update t_seller
+    set createtime = #{createtime,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=VARCHAR},
+      deletestate = #{deletestate,jdbcType=INTEGER},
+      imgurl = #{imgurl,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      shopname = #{shopname,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      money = #{money,jdbcType=REAL},
+      intro = #{intro,jdbcType=LONGVARCHAR},
+      uid = #{uid,jdbcType=LONGVARCHAR},
+      descrip = #{descrip,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.czg.myshop.model.Seller" >
+    update t_seller
+    set createtime = #{createtime,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=VARCHAR},
+      deletestate = #{deletestate,jdbcType=INTEGER},
+      imgurl = #{imgurl,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      shopname = #{shopname,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      money = #{money,jdbcType=REAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

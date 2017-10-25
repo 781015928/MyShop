@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.czg.myshop.dao.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.czg.myshop.model.Product" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="VARCHAR" />
+    <result column="updatetime" property="updatetime" jdbcType="VARCHAR" />
+    <result column="deletestate" property="deletestate" jdbcType="INTEGER" />
+    <result column="imgurl" property="imgurl" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="seller_id" property="sellerId" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="REAL" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="product_class_id" property="productClassId" jdbcType="INTEGER" />
+    <result column="self_count" property="selfCount" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.czg.myshop.model.ProductWithBLOBs" extends="BaseResultMap" >
+    <result column="intro" property="intro" jdbcType="LONGVARCHAR" />
+    <result column="descrip" property="descrip" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, createtime, updatetime, deletestate, imgurl, name, seller_id, price, count, product_class_id, 
+    self_count
+  </sql>
+  <sql id="Blob_Column_List" >
+    intro, descrip
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.czg.myshop.model.ProductExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.czg.myshop.model.ProductExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.czg.myshop.model.ProductExample" >
+    delete from t_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.czg.myshop.model.ProductWithBLOBs" >
+    insert into t_product (id, createtime, updatetime, 
+      deletestate, imgurl, name, 
+      seller_id, price, count, 
+      product_class_id, self_count, intro, 
+      descrip)
+    values (#{id,jdbcType=INTEGER}, #{createtime,jdbcType=VARCHAR}, #{updatetime,jdbcType=VARCHAR}, 
+      #{deletestate,jdbcType=INTEGER}, #{imgurl,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{sellerId,jdbcType=INTEGER}, #{price,jdbcType=REAL}, #{count,jdbcType=INTEGER}, 
+      #{productClassId,jdbcType=INTEGER}, #{selfCount,jdbcType=INTEGER}, #{intro,jdbcType=LONGVARCHAR}, 
+      #{descrip,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.czg.myshop.model.ProductWithBLOBs" >
+    insert into t_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="deletestate != null" >
+        deletestate,
+      </if>
+      <if test="imgurl != null" >
+        imgurl,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sellerId != null" >
+        seller_id,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="productClassId != null" >
+        product_class_id,
+      </if>
+      <if test="selfCount != null" >
+        self_count,
+      </if>
+      <if test="intro != null" >
+        intro,
+      </if>
+      <if test="descrip != null" >
+        descrip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="deletestate != null" >
+        #{deletestate,jdbcType=INTEGER},
+      </if>
+      <if test="imgurl != null" >
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="productClassId != null" >
+        #{productClassId,jdbcType=INTEGER},
+      </if>
+      <if test="selfCount != null" >
+        #{selfCount,jdbcType=INTEGER},
+      </if>
+      <if test="intro != null" >
+        #{intro,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="descrip != null" >
+        #{descrip,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.czg.myshop.model.ProductExample" resultType="java.lang.Integer" >
+    select count(*) from t_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_product
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatetime != null" >
+        updatetime = #{record.updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deletestate != null" >
+        deletestate = #{record.deletestate,jdbcType=INTEGER},
+      </if>
+      <if test="record.imgurl != null" >
+        imgurl = #{record.imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerId != null" >
+        seller_id = #{record.sellerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=REAL},
+      </if>
+      <if test="record.count != null" >
+        count = #{record.count,jdbcType=INTEGER},
+      </if>
+      <if test="record.productClassId != null" >
+        product_class_id = #{record.productClassId,jdbcType=INTEGER},
+      </if>
+      <if test="record.selfCount != null" >
+        self_count = #{record.selfCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.intro != null" >
+        intro = #{record.intro,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.descrip != null" >
+        descrip = #{record.descrip,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update t_product
+    set id = #{record.id,jdbcType=INTEGER},
+      createtime = #{record.createtime,jdbcType=VARCHAR},
+      updatetime = #{record.updatetime,jdbcType=VARCHAR},
+      deletestate = #{record.deletestate,jdbcType=INTEGER},
+      imgurl = #{record.imgurl,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      seller_id = #{record.sellerId,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=REAL},
+      count = #{record.count,jdbcType=INTEGER},
+      product_class_id = #{record.productClassId,jdbcType=INTEGER},
+      self_count = #{record.selfCount,jdbcType=INTEGER},
+      intro = #{record.intro,jdbcType=LONGVARCHAR},
+      descrip = #{record.descrip,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_product
+    set id = #{record.id,jdbcType=INTEGER},
+      createtime = #{record.createtime,jdbcType=VARCHAR},
+      updatetime = #{record.updatetime,jdbcType=VARCHAR},
+      deletestate = #{record.deletestate,jdbcType=INTEGER},
+      imgurl = #{record.imgurl,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      seller_id = #{record.sellerId,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=REAL},
+      count = #{record.count,jdbcType=INTEGER},
+      product_class_id = #{record.productClassId,jdbcType=INTEGER},
+      self_count = #{record.selfCount,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.czg.myshop.model.ProductWithBLOBs" >
+    update t_product
+    <set >
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="deletestate != null" >
+        deletestate = #{deletestate,jdbcType=INTEGER},
+      </if>
+      <if test="imgurl != null" >
+        imgurl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerId != null" >
+        seller_id = #{sellerId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=REAL},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="productClassId != null" >
+        product_class_id = #{productClassId,jdbcType=INTEGER},
+      </if>
+      <if test="selfCount != null" >
+        self_count = #{selfCount,jdbcType=INTEGER},
+      </if>
+      <if test="intro != null" >
+        intro = #{intro,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="descrip != null" >
+        descrip = #{descrip,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.czg.myshop.model.ProductWithBLOBs" >
+    update t_product
+    set createtime = #{createtime,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=VARCHAR},
+      deletestate = #{deletestate,jdbcType=INTEGER},
+      imgurl = #{imgurl,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      seller_id = #{sellerId,jdbcType=INTEGER},
+      price = #{price,jdbcType=REAL},
+      count = #{count,jdbcType=INTEGER},
+      product_class_id = #{productClassId,jdbcType=INTEGER},
+      self_count = #{selfCount,jdbcType=INTEGER},
+      intro = #{intro,jdbcType=LONGVARCHAR},
+      descrip = #{descrip,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.czg.myshop.model.Product" >
+    update t_product
+    set createtime = #{createtime,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=VARCHAR},
+      deletestate = #{deletestate,jdbcType=INTEGER},
+      imgurl = #{imgurl,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      seller_id = #{sellerId,jdbcType=INTEGER},
+      price = #{price,jdbcType=REAL},
+      count = #{count,jdbcType=INTEGER},
+      product_class_id = #{productClassId,jdbcType=INTEGER},
+      self_count = #{selfCount,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
