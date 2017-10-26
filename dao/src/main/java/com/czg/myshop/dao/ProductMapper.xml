@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.czg.myshop.dao.ProductMapper" >
-  <resultMap id="BaseResultMap" type="com.czg.myshop.model.Product" >
+  <resultMap id="BaseResultMap" type="com.czg.myshop.model.entiy.Product" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="createtime" property="createtime" jdbcType="VARCHAR" />
     <result column="updatetime" property="updatetime" jdbcType="VARCHAR" />
@@ -14,7 +14,7 @@
     <result column="product_class_id" property="productClassId" jdbcType="INTEGER" />
     <result column="self_count" property="selfCount" jdbcType="INTEGER" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.czg.myshop.model.ProductWithBLOBs" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.czg.myshop.model.entiy.ProductWithBLOBs" extends="BaseResultMap" >
     <result column="intro" property="intro" jdbcType="LONGVARCHAR" />
     <result column="descrip" property="descrip" jdbcType="LONGVARCHAR" />
   </resultMap>
@@ -83,7 +83,7 @@
   <sql id="Blob_Column_List" >
     intro, descrip
   </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.czg.myshop.model.ProductExample" >
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.czg.myshop.model.entiy.ProductExample" >
     select
     <if test="distinct" >
       distinct
@@ -99,7 +99,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.czg.myshop.model.ProductExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.czg.myshop.model.entiy.ProductExample" >
     select
     <if test="distinct" >
       distinct
@@ -125,13 +125,13 @@
     delete from t_product
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.czg.myshop.model.ProductExample" >
+  <delete id="deleteByExample" parameterType="com.czg.myshop.model.entiy.ProductExample" >
     delete from t_product
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.czg.myshop.model.ProductWithBLOBs" >
+  <insert id="insert" parameterType="com.czg.myshop.model.entiy.ProductWithBLOBs" >
     insert into t_product (id, createtime, updatetime, 
       deletestate, imgurl, name, 
       seller_id, price, count, 
@@ -143,7 +143,7 @@
       #{productClassId,jdbcType=INTEGER}, #{selfCount,jdbcType=INTEGER}, #{intro,jdbcType=LONGVARCHAR}, 
       #{descrip,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.czg.myshop.model.ProductWithBLOBs" >
+  <insert id="insertSelective" parameterType="com.czg.myshop.model.entiy.ProductWithBLOBs" >
     insert into t_product
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -228,7 +228,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.czg.myshop.model.ProductExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.czg.myshop.model.entiy.ProductExample" resultType="java.lang.Integer" >
     select count(*) from t_product
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -317,7 +317,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.czg.myshop.model.ProductWithBLOBs" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.czg.myshop.model.entiy.ProductWithBLOBs" >
     update t_product
     <set >
       <if test="createtime != null" >
@@ -359,7 +359,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.czg.myshop.model.ProductWithBLOBs" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.czg.myshop.model.entiy.ProductWithBLOBs" >
     update t_product
     set createtime = #{createtime,jdbcType=VARCHAR},
       updatetime = #{updatetime,jdbcType=VARCHAR},
@@ -375,7 +375,7 @@
       descrip = #{descrip,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.czg.myshop.model.Product" >
+  <update id="updateByPrimaryKey" parameterType="com.czg.myshop.model.entiy.Product" >
     update t_product
     set createtime = #{createtime,jdbcType=VARCHAR},
       updatetime = #{updatetime,jdbcType=VARCHAR},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.czg.myshop.dao.LogisticsMapper" >
-  <resultMap id="BaseResultMap" type="com.czg.myshop.model.Logistics" >
+  <resultMap id="BaseResultMap" type="com.czg.myshop.model.entiy.Logistics" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="createtime" property="createtime" jdbcType="VARCHAR" />
     <result column="updatetime" property="updatetime" jdbcType="VARCHAR" />
@@ -70,7 +70,7 @@
   <sql id="Base_Column_List" >
     id, createtime, updatetime, deletestate, waybill_code, state
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.czg.myshop.model.LogisticsExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.czg.myshop.model.entiy.LogisticsExample" >
     select
     <if test="distinct" >
       distinct
@@ -94,13 +94,13 @@
     delete from t_logistics
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.czg.myshop.model.LogisticsExample" >
+  <delete id="deleteByExample" parameterType="com.czg.myshop.model.entiy.LogisticsExample" >
     delete from t_logistics
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.czg.myshop.model.Logistics" >
+  <insert id="insert" parameterType="com.czg.myshop.model.entiy.Logistics" >
     insert into t_logistics (id, createtime, updatetime, 
       deletestate, waybill_code, state
       )
@@ -108,7 +108,7 @@
       #{deletestate,jdbcType=INTEGER}, #{waybillCode,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.czg.myshop.model.Logistics" >
+  <insert id="insertSelective" parameterType="com.czg.myshop.model.entiy.Logistics" >
     insert into t_logistics
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -151,7 +151,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.czg.myshop.model.LogisticsExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.czg.myshop.model.entiy.LogisticsExample" resultType="java.lang.Integer" >
     select count(*) from t_logistics
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -195,7 +195,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.czg.myshop.model.Logistics" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.czg.myshop.model.entiy.Logistics" >
     update t_logistics
     <set >
       <if test="createtime != null" >
@@ -216,7 +216,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.czg.myshop.model.Logistics" >
+  <update id="updateByPrimaryKey" parameterType="com.czg.myshop.model.entiy.Logistics" >
     update t_logistics
     set createtime = #{createtime,jdbcType=VARCHAR},
       updatetime = #{updatetime,jdbcType=VARCHAR},

@@ -1,12 +1,13 @@
 package com.czg.myshop.dao;
 
-import com.czg.myshop.model.Region;
-import com.czg.myshop.model.RegionExample;
+import com.czg.myshop.model.entiy.Region;
+import com.czg.myshop.model.entiy.RegionExample;
+import com.czg.myshop.mybatis.MybatisMapper;
 
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
+@MybatisMapper
 public interface RegionMapper {
     int countByExample(RegionExample example);
 

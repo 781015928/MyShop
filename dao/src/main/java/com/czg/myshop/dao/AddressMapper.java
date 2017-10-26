@@ -1,12 +1,13 @@
 package com.czg.myshop.dao;
 
-import com.czg.myshop.model.Address;
-import com.czg.myshop.model.AddressExample;
+import com.czg.myshop.model.entiy.Address;
+import com.czg.myshop.model.entiy.AddressExample;
+import com.czg.myshop.mybatis.MybatisMapper;
 
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
+@MybatisMapper
 public interface AddressMapper {
     int countByExample(AddressExample example);
 

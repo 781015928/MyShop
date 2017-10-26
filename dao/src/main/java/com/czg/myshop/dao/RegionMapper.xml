@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.czg.myshop.dao.RegionMapper" >
-  <resultMap id="BaseResultMap" type="com.czg.myshop.model.Region" >
+  <resultMap id="BaseResultMap" type="com.czg.myshop.model.entiy.Region" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="createtime" property="createtime" jdbcType="VARCHAR" />
     <result column="updatetime" property="updatetime" jdbcType="VARCHAR" />
@@ -72,7 +72,7 @@
   <sql id="Base_Column_List" >
     id, createtime, updatetime, deletestate, level, parent_id, name, postalcode
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.czg.myshop.model.RegionExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.czg.myshop.model.entiy.RegionExample" >
     select
     <if test="distinct" >
       distinct
@@ -96,13 +96,13 @@
     delete from t_region
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.czg.myshop.model.RegionExample" >
+  <delete id="deleteByExample" parameterType="com.czg.myshop.model.entiy.RegionExample" >
     delete from t_region
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.czg.myshop.model.Region" >
+  <insert id="insert" parameterType="com.czg.myshop.model.entiy.Region" >
     insert into t_region (id, createtime, updatetime, 
       deletestate, level, parent_id, 
       name, postalcode)
@@ -110,7 +110,7 @@
       #{deletestate,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, 
       #{name,jdbcType=VARCHAR}, #{postalcode,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.czg.myshop.model.Region" >
+  <insert id="insertSelective" parameterType="com.czg.myshop.model.entiy.Region" >
     insert into t_region
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -165,7 +165,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.czg.myshop.model.RegionExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.czg.myshop.model.entiy.RegionExample" resultType="java.lang.Integer" >
     select count(*) from t_region
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -217,7 +217,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.czg.myshop.model.Region" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.czg.myshop.model.entiy.Region" >
     update t_region
     <set >
       <if test="createtime != null" >
@@ -244,7 +244,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.czg.myshop.model.Region" >
+  <update id="updateByPrimaryKey" parameterType="com.czg.myshop.model.entiy.Region" >
     update t_region
     set createtime = #{createtime,jdbcType=VARCHAR},
       updatetime = #{updatetime,jdbcType=VARCHAR},

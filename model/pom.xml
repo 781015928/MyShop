@@ -11,6 +11,15 @@
 
     <artifactId>model</artifactId>
     <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.czg</groupId>
+            <artifactId>common</artifactId>
+            <version>${moudle.version}</version>
+        </dependency>
+
+    </dependencies>
     <build>
         <resources>
             <resource>

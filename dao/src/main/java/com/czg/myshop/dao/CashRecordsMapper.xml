@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.czg.myshop.dao.CashRecordsMapper" >
-  <resultMap id="BaseResultMap" type="com.czg.myshop.model.CashRecords" >
+  <resultMap id="BaseResultMap" type="com.czg.myshop.model.entiy.CashRecords" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="createtime" property="createtime" jdbcType="VARCHAR" />
     <result column="updatetime" property="updatetime" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
     <result column="paytype" property="paytype" jdbcType="INTEGER" />
     <result column="cash_code" property="cashCode" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.czg.myshop.model.CashRecords" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.czg.myshop.model.entiy.CashRecords" extends="BaseResultMap" >
     <result column="type" property="type" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -79,7 +79,7 @@
   <sql id="Blob_Column_List" >
     type
   </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.czg.myshop.model.CashRecordsExample" >
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.czg.myshop.model.entiy.CashRecordsExample" >
     select
     <if test="distinct" >
       distinct
@@ -95,7 +95,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.czg.myshop.model.CashRecordsExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.czg.myshop.model.entiy.CashRecordsExample" >
     select
     <if test="distinct" >
       distinct
@@ -121,13 +121,13 @@
     delete from t_cash_records
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.czg.myshop.model.CashRecordsExample" >
+  <delete id="deleteByExample" parameterType="com.czg.myshop.model.entiy.CashRecordsExample" >
     delete from t_cash_records
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.czg.myshop.model.CashRecords" >
+  <insert id="insert" parameterType="com.czg.myshop.model.entiy.CashRecords" >
     insert into t_cash_records (id, createtime, updatetime, 
       deletestate, uid, price, 
       state, paytype, cash_code, 
@@ -137,7 +137,7 @@
       #{state,jdbcType=INTEGER}, #{paytype,jdbcType=INTEGER}, #{cashCode,jdbcType=VARCHAR}, 
       #{type,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.czg.myshop.model.CashRecords" >
+  <insert id="insertSelective" parameterType="com.czg.myshop.model.entiy.CashRecords" >
     insert into t_cash_records
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -204,7 +204,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.czg.myshop.model.CashRecordsExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.czg.myshop.model.entiy.CashRecordsExample" resultType="java.lang.Integer" >
     select count(*) from t_cash_records
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -279,7 +279,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.czg.myshop.model.CashRecords" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.czg.myshop.model.entiy.CashRecords" >
     update t_cash_records
     <set >
       <if test="createtime != null" >
@@ -312,7 +312,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.czg.myshop.model.CashRecords" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.czg.myshop.model.entiy.CashRecords" >
     update t_cash_records
     set createtime = #{createtime,jdbcType=VARCHAR},
       updatetime = #{updatetime,jdbcType=VARCHAR},
@@ -325,7 +325,7 @@
       type = #{type,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.czg.myshop.model.CashRecords" >
+  <update id="updateByPrimaryKey" parameterType="com.czg.myshop.model.entiy.CashRecords" >
     update t_cash_records
     set createtime = #{createtime,jdbcType=VARCHAR},
       updatetime = #{updatetime,jdbcType=VARCHAR},

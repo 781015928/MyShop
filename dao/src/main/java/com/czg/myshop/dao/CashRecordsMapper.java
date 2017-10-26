@@ -1,12 +1,13 @@
 package com.czg.myshop.dao;
 
-import com.czg.myshop.model.CashRecords;
-import com.czg.myshop.model.CashRecordsExample;
+import com.czg.myshop.model.entiy.CashRecords;
+import com.czg.myshop.model.entiy.CashRecordsExample;
+import com.czg.myshop.mybatis.MybatisMapper;
 
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
+@MybatisMapper
 public interface CashRecordsMapper {
     int countByExample(CashRecordsExample example);
 

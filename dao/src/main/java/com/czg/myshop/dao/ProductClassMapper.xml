@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.czg.myshop.dao.ProductClassMapper" >
-  <resultMap id="BaseResultMap" type="com.czg.myshop.model.ProductClass" >
+  <resultMap id="BaseResultMap" type="com.czg.myshop.model.entiy.ProductClass" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="createtime" property="createtime" jdbcType="VARCHAR" />
     <result column="updatetime" property="updatetime" jdbcType="VARCHAR" />
@@ -69,7 +69,7 @@
   <sql id="Base_Column_List" >
     id, createtime, updatetime, deletestate, name
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.czg.myshop.model.ProductClassExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.czg.myshop.model.entiy.ProductClassExample" >
     select
     <if test="distinct" >
       distinct
@@ -93,19 +93,19 @@
     delete from t_product_class
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.czg.myshop.model.ProductClassExample" >
+  <delete id="deleteByExample" parameterType="com.czg.myshop.model.entiy.ProductClassExample" >
     delete from t_product_class
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.czg.myshop.model.ProductClass" >
+  <insert id="insert" parameterType="com.czg.myshop.model.entiy.ProductClass" >
     insert into t_product_class (id, createtime, updatetime, 
       deletestate, name)
     values (#{id,jdbcType=INTEGER}, #{createtime,jdbcType=VARCHAR}, #{updatetime,jdbcType=VARCHAR}, 
       #{deletestate,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.czg.myshop.model.ProductClass" >
+  <insert id="insertSelective" parameterType="com.czg.myshop.model.entiy.ProductClass" >
     insert into t_product_class
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -142,7 +142,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.czg.myshop.model.ProductClassExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.czg.myshop.model.entiy.ProductClassExample" resultType="java.lang.Integer" >
     select count(*) from t_product_class
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -182,7 +182,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.czg.myshop.model.ProductClass" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.czg.myshop.model.entiy.ProductClass" >
     update t_product_class
     <set >
       <if test="createtime != null" >
@@ -200,7 +200,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.czg.myshop.model.ProductClass" >
+  <update id="updateByPrimaryKey" parameterType="com.czg.myshop.model.entiy.ProductClass" >
     update t_product_class
     set createtime = #{createtime,jdbcType=VARCHAR},
       updatetime = #{updatetime,jdbcType=VARCHAR},

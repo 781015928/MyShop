@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.czg.myshop.dao.OrderMapper" >
-  <resultMap id="BaseResultMap" type="com.czg.myshop.model.Order" >
+  <resultMap id="BaseResultMap" type="com.czg.myshop.model.entiy.Order" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="uid" property="uid" jdbcType="INTEGER" />
     <result column="address_id" property="addressId" jdbcType="INTEGER" />
@@ -83,7 +83,7 @@
     count, price, unit_price, pay_state, logistics_state, state, after_service_state, 
     logistics_id, cash_id
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.czg.myshop.model.OrderExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.czg.myshop.model.entiy.OrderExample" >
     select
     <if test="distinct" >
       distinct
@@ -107,13 +107,13 @@
     delete from t_order
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.czg.myshop.model.OrderExample" >
+  <delete id="deleteByExample" parameterType="com.czg.myshop.model.entiy.OrderExample" >
     delete from t_order
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.czg.myshop.model.Order" >
+  <insert id="insert" parameterType="com.czg.myshop.model.entiy.Order" >
     insert into t_order (id, uid, address_id, 
       product_id, createtime, updatetime, 
       deletestate, product_spec_id, count, 
@@ -127,7 +127,7 @@
       #{logisticsState,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, #{afterServiceState,jdbcType=INTEGER}, 
       #{logisticsId,jdbcType=INTEGER}, #{cashId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.czg.myshop.model.Order" >
+  <insert id="insertSelective" parameterType="com.czg.myshop.model.entiy.Order" >
     insert into t_order
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -236,7 +236,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.czg.myshop.model.OrderExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.czg.myshop.model.entiy.OrderExample" resultType="java.lang.Integer" >
     select count(*) from t_order
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -324,7 +324,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.czg.myshop.model.Order" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.czg.myshop.model.entiy.Order" >
     update t_order
     <set >
       <if test="uid != null" >
@@ -378,7 +378,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.czg.myshop.model.Order" >
+  <update id="updateByPrimaryKey" parameterType="com.czg.myshop.model.entiy.Order" >
     update t_order
     set uid = #{uid,jdbcType=INTEGER},
       address_id = #{addressId,jdbcType=INTEGER},

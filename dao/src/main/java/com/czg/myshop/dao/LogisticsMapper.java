@@ -1,12 +1,13 @@
 package com.czg.myshop.dao;
 
-import com.czg.myshop.model.Logistics;
-import com.czg.myshop.model.LogisticsExample;
+import com.czg.myshop.model.entiy.Logistics;
+import com.czg.myshop.model.entiy.LogisticsExample;
+import com.czg.myshop.mybatis.MybatisMapper;
 
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
+@MybatisMapper
 public interface LogisticsMapper {
     int countByExample(LogisticsExample example);
 

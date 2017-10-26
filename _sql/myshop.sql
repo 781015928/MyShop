@@ -20,11 +20,11 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `t_address`;
 CREATE TABLE `t_address` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL COMMENT '用户id',
   `createtime` varchar(20) NOT NULL,
   `updatetime` varchar(20) NOT NULL,
-  `deletestate` int(11) NOT NULL DEFAULT '0',
+  `deletestate` int(11) DEFAULT '0',
   `phone` varchar(11) NOT NULL COMMENT '手机号',
   `name` varchar(10) NOT NULL COMMENT '姓名',
   `street` varchar(30) NOT NULL COMMENT '街道地址',
@@ -34,7 +34,7 @@ CREATE TABLE `t_address` (
   KEY `FK_Reference_9` (`uid`),
   CONSTRAINT `FK_Reference_11` FOREIGN KEY (`region_id`) REFERENCES `t_region` (`id`),
   CONSTRAINT `FK_Reference_9` FOREIGN KEY (`uid`) REFERENCES `t_user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='收货地址表';
+) ENGINE=InnoDB AUTO_INCREMENT=100000000 DEFAULT CHARSET=utf8 COMMENT='收货地址表';
 
 -- ----------------------------
 -- Records of t_address
@@ -45,15 +45,15 @@ CREATE TABLE `t_address` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_admin`;
 CREATE TABLE `t_admin` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `createtime` varchar(20) NOT NULL,
   `updatetime` varchar(20) NOT NULL,
-  `deletestate` int(11) NOT NULL DEFAULT '0',
+  `deletestate` int(11) DEFAULT '0',
   `uid` text COMMENT '用户id',
   `level` varchar(20) DEFAULT NULL COMMENT '管理员级别 0 、root 1、普通',
   `money` float DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='管理员表';
+) ENGINE=InnoDB AUTO_INCREMENT=100000000 DEFAULT CHARSET=utf8 COMMENT='管理员表';
 
 -- ----------------------------
 -- Records of t_admin
@@ -64,7 +64,7 @@ CREATE TABLE `t_admin` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_cash_records`;
 CREATE TABLE `t_cash_records` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `createtime` varchar(20) NOT NULL,
   `updatetime` varchar(20) NOT NULL,
   `deletestate` varchar(20) NOT NULL DEFAULT '0',
@@ -75,7 +75,7 @@ CREATE TABLE `t_cash_records` (
   `paytype` int(11) DEFAULT NULL COMMENT '支付类型',
   `cash_code` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '流水号',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='流水记录';
+) ENGINE=InnoDB AUTO_INCREMENT=100000000 DEFAULT CHARSET=utf8 COMMENT='流水记录';
 
 -- ----------------------------
 -- Records of t_cash_records
@@ -86,17 +86,17 @@ CREATE TABLE `t_cash_records` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_evaluate`;
 CREATE TABLE `t_evaluate` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `createtime` varchar(20) NOT NULL,
   `updatetime` varchar(20) NOT NULL,
-  `deletestate` int(11) NOT NULL DEFAULT '0',
+  `deletestate` int(11) DEFAULT '0',
   `content` varchar(15) DEFAULT NULL COMMENT '内容',
   `uid` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `anonymous` int(11) NOT NULL COMMENT '0 、匿名 1、非匿名',
   `level` int(11) DEFAULT NULL COMMENT '1 到5',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='评价表';
+) ENGINE=InnoDB AUTO_INCREMENT=100000000 DEFAULT CHARSET=utf8 COMMENT='评价表';
 
 -- ----------------------------
 -- Records of t_evaluate
@@ -107,14 +107,14 @@ CREATE TABLE `t_evaluate` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_logistics`;
 CREATE TABLE `t_logistics` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `createtime` varchar(20) NOT NULL,
   `updatetime` varchar(20) NOT NULL,
-  `deletestate` int(11) NOT NULL DEFAULT '0',
+  `deletestate` int(11) DEFAULT '0',
   `waybill_code` varchar(30) DEFAULT NULL COMMENT '运单号',
   `state` int(11) NOT NULL COMMENT '状态',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='物流表';
+) ENGINE=InnoDB AUTO_INCREMENT=100000000 DEFAULT CHARSET=utf8 COMMENT='物流表';
 
 -- ----------------------------
 -- Records of t_logistics
@@ -125,13 +125,13 @@ CREATE TABLE `t_logistics` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_order`;
 CREATE TABLE `t_order` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL COMMENT '用户id',
   `address_id` int(11) NOT NULL COMMENT '收货地址id',
   `product_id` int(11) NOT NULL COMMENT '商品id',
   `createtime` varchar(20) NOT NULL,
   `updatetime` varchar(20) NOT NULL,
-  `deletestate` int(11) NOT NULL DEFAULT '0',
+  `deletestate` int(11) DEFAULT '0',
   `product_spec_id` int(11) NOT NULL COMMENT '商品规格id',
   `count` int(11) NOT NULL COMMENT '数量',
   `price` float NOT NULL COMMENT '总价',
@@ -143,7 +143,7 @@ CREATE TABLE `t_order` (
   `logistics_id` int(11) DEFAULT NULL COMMENT '物流id',
   `cash_id` int(11) DEFAULT NULL COMMENT '流水id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单表';
+) ENGINE=InnoDB AUTO_INCREMENT=100000000 DEFAULT CHARSET=utf8 COMMENT='订单表';
 
 -- ----------------------------
 -- Records of t_order
@@ -154,10 +154,10 @@ CREATE TABLE `t_order` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_product`;
 CREATE TABLE `t_product` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `createtime` varchar(20) NOT NULL,
   `updatetime` varchar(20) NOT NULL,
-  `deletestate` int(11) NOT NULL DEFAULT '0',
+  `deletestate` int(11) DEFAULT '0',
   `imgurl` varchar(300) DEFAULT NULL COMMENT '商品图片',
   `name` varchar(20) DEFAULT NULL COMMENT '名称',
   `intro` text COMMENT '简介',
@@ -168,7 +168,7 @@ CREATE TABLE `t_product` (
   `product_class_id` int(11) DEFAULT NULL COMMENT '商品种类id',
   `self_count` int(11) DEFAULT NULL COMMENT '销量',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品表';
+) ENGINE=InnoDB AUTO_INCREMENT=100000000 DEFAULT CHARSET=utf8 COMMENT='商品表';
 
 -- ----------------------------
 -- Records of t_product
@@ -179,13 +179,13 @@ CREATE TABLE `t_product` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_product_class`;
 CREATE TABLE `t_product_class` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `createtime` varchar(20) NOT NULL,
   `updatetime` varchar(20) NOT NULL,
-  `deletestate` int(11) NOT NULL DEFAULT '0',
+  `deletestate` int(11) DEFAULT '0',
   `name` varchar(15) DEFAULT NULL COMMENT '地名',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品种类表';
+) ENGINE=InnoDB AUTO_INCREMENT=100000000 DEFAULT CHARSET=utf8 COMMENT='商品种类表';
 
 -- ----------------------------
 -- Records of t_product_class
@@ -196,17 +196,17 @@ CREATE TABLE `t_product_class` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_product_spec`;
 CREATE TABLE `t_product_spec` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `createtime` varchar(20) NOT NULL,
   `updatetime` varchar(20) NOT NULL,
-  `deletestate` int(11) NOT NULL DEFAULT '0',
+  `deletestate` int(11) DEFAULT '0',
   `product_id` int(11) DEFAULT NULL COMMENT '商品id',
   `color` text COMMENT '颜色',
   `modeltype` text COMMENT '规格',
   `price` float NOT NULL COMMENT '价格',
   `count` int(11) NOT NULL COMMENT '数量',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='库存规格表';
+) ENGINE=InnoDB AUTO_INCREMENT=100000000 DEFAULT CHARSET=utf8 COMMENT='库存规格表';
 
 -- ----------------------------
 -- Records of t_product_spec
@@ -217,16 +217,16 @@ CREATE TABLE `t_product_spec` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_region`;
 CREATE TABLE `t_region` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `createtime` varchar(20) NOT NULL,
   `updatetime` varchar(20) NOT NULL,
-  `deletestate` int(11) NOT NULL DEFAULT '0',
+  `deletestate` int(11) DEFAULT '0',
   `level` int(11) NOT NULL COMMENT '1、省2、市3、区',
   `parent_id` int(11) NOT NULL COMMENT '父id  level=1 时都为0',
   `name` varchar(15) DEFAULT NULL COMMENT '地名',
   `postalcode` varchar(6) DEFAULT NULL COMMENT '邮编',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='地址表';
+) ENGINE=InnoDB AUTO_INCREMENT=100000000 DEFAULT CHARSET=utf8 COMMENT='地址表';
 
 -- ----------------------------
 -- Records of t_region
@@ -237,10 +237,10 @@ CREATE TABLE `t_region` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_seller`;
 CREATE TABLE `t_seller` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `createtime` varchar(20) NOT NULL,
   `updatetime` varchar(20) NOT NULL,
-  `deletestate` int(11) NOT NULL DEFAULT '0',
+  `deletestate` int(11) DEFAULT '0',
   `imgurl` varchar(300) DEFAULT NULL COMMENT '商店logo',
   `name` varchar(20) DEFAULT NULL COMMENT '商家名称',
   `intro` text COMMENT '简述',
@@ -250,7 +250,7 @@ CREATE TABLE `t_seller` (
   `descrip` text COMMENT '商家描述',
   `money` float DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商家表';
+) ENGINE=InnoDB AUTO_INCREMENT=100000000 DEFAULT CHARSET=utf8 COMMENT='商家表';
 
 -- ----------------------------
 -- Records of t_seller
@@ -261,9 +261,9 @@ CREATE TABLE `t_seller` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_user`;
 CREATE TABLE `t_user` (
-  `id` int(11) NOT NULL COMMENT '用户id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户id',
   `account` varchar(30) NOT NULL COMMENT '账号',
-  `password` varchar(30) DEFAULT NULL COMMENT '密码',
+  `password` varchar(32) NOT NULL COMMENT '密码',
   `email` varchar(30) DEFAULT NULL COMMENT '邮箱',
   `phone` varchar(11) DEFAULT NULL COMMENT '电话',
   `headimg` varchar(300) DEFAULT NULL COMMENT '头像地址',
@@ -274,12 +274,11 @@ CREATE TABLE `t_user` (
   `qqid` varchar(30) DEFAULT NULL COMMENT 'qq登录id',
   `createtime` varchar(20) NOT NULL,
   `updatetime` varchar(20) NOT NULL,
-  `deletestate` int(11) NOT NULL DEFAULT '0',
+  `deletestate` int(11) DEFAULT '0',
   `type` int(11) DEFAULT NULL COMMENT '用户类型0、管理员用户 1 、普通用户  2、 商家用户',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=100000000 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of t_user
 -- ----------------------------
-INSERT INTO `t_user` VALUES ('1', '15214027378', null, null, null, null, null, null, null, null, null, '2017-10-24 20:17:14', '2017-10-24 20:17:14', '0', null);

@@ -8,7 +8,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>admin</artifactId>
-    <packaging>war</packaging>
+    <!--<packaging>war</packaging>-->
     <name>MyShop-Web Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>

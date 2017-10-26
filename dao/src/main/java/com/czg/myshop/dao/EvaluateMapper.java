@@ -1,12 +1,13 @@
 package com.czg.myshop.dao;
 
-import com.czg.myshop.model.Evaluate;
-import com.czg.myshop.model.EvaluateExample;
+import com.czg.myshop.model.entiy.Evaluate;
+import com.czg.myshop.model.entiy.EvaluateExample;
+import com.czg.myshop.mybatis.MybatisMapper;
 
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
+@MybatisMapper
 public interface EvaluateMapper {
     int countByExample(EvaluateExample example);
 

@@ -19,13 +19,9 @@
         <dependency>
             <groupId>com.czg</groupId>
             <artifactId>model</artifactId>
-            <version>${model.version}</version>
+            <version>${moudle.version}</version>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-        </dependency>
+
 
     </dependencies>
 
@@ -49,6 +45,11 @@
         <testSourceDirectory>
             src/test/java
         </testSourceDirectory>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+            </testResource>
+        </testResources>
     </build>
 
 

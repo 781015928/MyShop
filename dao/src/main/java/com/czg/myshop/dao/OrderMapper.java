@@ -1,12 +1,13 @@
 package com.czg.myshop.dao;
 
-import com.czg.myshop.model.Order;
-import com.czg.myshop.model.OrderExample;
+import com.czg.myshop.model.entiy.Order;
+import com.czg.myshop.model.entiy.OrderExample;
+import com.czg.myshop.mybatis.MybatisMapper;
 
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
+@MybatisMapper
 public interface OrderMapper {
     int countByExample(OrderExample example);
 

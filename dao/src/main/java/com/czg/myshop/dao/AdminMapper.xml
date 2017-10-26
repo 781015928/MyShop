@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.czg.myshop.dao.AdminMapper" >
-  <resultMap id="BaseResultMap" type="com.czg.myshop.model.Admin" >
+  <resultMap id="BaseResultMap" type="com.czg.myshop.model.entiy.Admin" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="createtime" property="createtime" jdbcType="VARCHAR" />
     <result column="updatetime" property="updatetime" jdbcType="VARCHAR" />
@@ -9,7 +9,7 @@
     <result column="level" property="level" jdbcType="VARCHAR" />
     <result column="money" property="money" jdbcType="REAL" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.czg.myshop.model.Admin" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.czg.myshop.model.entiy.Admin" extends="BaseResultMap" >
     <result column="uid" property="uid" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -76,7 +76,7 @@
   <sql id="Blob_Column_List" >
     uid
   </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.czg.myshop.model.AdminExample" >
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.czg.myshop.model.entiy.AdminExample" >
     select
     <if test="distinct" >
       distinct
@@ -92,7 +92,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.czg.myshop.model.AdminExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.czg.myshop.model.entiy.AdminExample" >
     select
     <if test="distinct" >
       distinct
@@ -118,13 +118,13 @@
     delete from t_admin
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.czg.myshop.model.AdminExample" >
+  <delete id="deleteByExample" parameterType="com.czg.myshop.model.entiy.AdminExample" >
     delete from t_admin
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.czg.myshop.model.Admin" >
+  <insert id="insert" parameterType="com.czg.myshop.model.entiy.Admin" >
     insert into t_admin (id, createtime, updatetime, 
       deletestate, level, money, 
       uid)
@@ -132,7 +132,7 @@
       #{deletestate,jdbcType=INTEGER}, #{level,jdbcType=VARCHAR}, #{money,jdbcType=REAL}, 
       #{uid,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.czg.myshop.model.Admin" >
+  <insert id="insertSelective" parameterType="com.czg.myshop.model.entiy.Admin" >
     insert into t_admin
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -181,7 +181,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.czg.myshop.model.AdminExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.czg.myshop.model.entiy.AdminExample" resultType="java.lang.Integer" >
     select count(*) from t_admin
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -241,7 +241,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.czg.myshop.model.Admin" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.czg.myshop.model.entiy.Admin" >
     update t_admin
     <set >
       <if test="createtime != null" >
@@ -265,7 +265,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.czg.myshop.model.Admin" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.czg.myshop.model.entiy.Admin" >
     update t_admin
     set createtime = #{createtime,jdbcType=VARCHAR},
       updatetime = #{updatetime,jdbcType=VARCHAR},
@@ -275,7 +275,7 @@
       uid = #{uid,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.czg.myshop.model.Admin" >
+  <update id="updateByPrimaryKey" parameterType="com.czg.myshop.model.entiy.Admin" >
     update t_admin
     set createtime = #{createtime,jdbcType=VARCHAR},
       updatetime = #{updatetime,jdbcType=VARCHAR},
