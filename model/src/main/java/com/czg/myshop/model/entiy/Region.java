@@ -1,5 +1,8 @@
 package com.czg.myshop.model.entiy;
 
+import io.swagger.annotations.ApiModel;
+
+@ApiModel
 public class Region {
     private Integer id;
 

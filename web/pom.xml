@@ -28,76 +28,7 @@
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
-        <!--<plugins>-->
-            <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-war-plugin</artifactId>-->
-                <!--<configuration>-->
-                    <!--<overlays>-->
-                        <!--&lt;!&ndash; 合并test1 &ndash;&gt;-->
-                        <!--<overlay>-->
-                            <!--<groupId>com.czg</groupId>-->
-                            <!--<artifactId>service</artifactId>-->
-                            <!--&lt;!&ndash; 过滤test1中相同的配置文件 &ndash;&gt;-->
-                        <!--</overlay>-->
-                        <!--&lt;!&ndash; 合并test2 &ndash;&gt;-->
-                        <!--<overlay>-->
-                            <!--<groupId>com.czg</groupId>-->
-                            <!--<artifactId>dao</artifactId>-->
 
-                        <!--</overlay>-->
-                    <!--</overlays>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
-            <!--&lt;!&ndash;<plugin>&ndash;&gt;-->
-                <!--&lt;!&ndash;<groupId>org.apache.maven.plugins</groupId>&ndash;&gt;-->
-                <!--&lt;!&ndash;<artifactId>maven-resources-plugin</artifactId>&ndash;&gt;-->
-                <!--&lt;!&ndash;<version>2.4.3</version>&ndash;&gt;-->
-                <!--&lt;!&ndash;<executions>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<execution>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<id>copy-resources</id>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<phase>package</phase>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<goals>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<goal>copy-resources</goal>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</goals>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<configuration>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<encoding>UTF-8</encoding>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<outputDirectory>./target/WEB-INF/classes</outputDirectory>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<resources>&ndash;&gt;-->
-                                <!--&lt;!&ndash;<resource>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<directory>./target/classes</directory>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<includes>&ndash;&gt;-->
-                                        <!--&lt;!&ndash;<include>*.xml</include>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</includes>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<filtering>true</filtering>&ndash;&gt;-->
-                                <!--&lt;!&ndash;</resource>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</resources>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</configuration>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</execution>&ndash;&gt;-->
-                    <!--&lt;!&ndash;&lt;!&ndash; 拷贝web.xml文件&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;<execution>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<id>copy-web-xml</id>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<phase>package</phase>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<goals>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<goal>copy-resources</goal>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</goals>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<configuration>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<encoding>UTF-8</encoding>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<outputDirectory>./target/WEB-INF</outputDirectory>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<resources>&ndash;&gt;-->
-                                <!--&lt;!&ndash;<resource>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<directory>./src/main/webapp/WEB-INF</directory>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<includes>&ndash;&gt;-->
-                                        <!--&lt;!&ndash;<include>*.xml</include>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</includes>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<filtering>true</filtering>&ndash;&gt;-->
-                                <!--&lt;!&ndash;</resource>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</resources>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</configuration>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</execution>&ndash;&gt;-->
-                <!--&lt;!&ndash;</executions>&ndash;&gt;-->
-            <!--&lt;!&ndash;</plugin>&ndash;&gt;-->
-        <!--</plugins>-->
     </build>
 
 </project>

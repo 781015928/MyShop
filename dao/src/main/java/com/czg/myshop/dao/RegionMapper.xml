@@ -102,8 +102,9 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.czg.myshop.model.entiy.Region" >
-    insert into t_region (id, createtime, updatetime, 
+  <insert id="insert" parameterType="com.czg.myshop.model.entiy.Region" useGeneratedKeys="true" keyProperty="id">
+
+    insert into t_region (id, createtime, updatetime,
       deletestate, level, parent_id, 
       name, postalcode)
     values (#{id,jdbcType=INTEGER}, #{createtime,jdbcType=VARCHAR}, #{updatetime,jdbcType=VARCHAR}, 

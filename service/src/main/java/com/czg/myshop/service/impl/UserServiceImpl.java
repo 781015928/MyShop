@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
-
+    @Override
     public User login(String account, String password, String imgCode) throws Exception {
         String password_salt = MD5.md5_salt(password);
         User user = userMapper.selectUserByAccount(account);
@@ -28,9 +28,10 @@ public class UserServiceImpl implements UserService {
         if (!user.getPassword().equals(password_salt)) {
             ExceptionMap.BUSINESS_EXCEPTION("账号或密码错误!");
         }
+
         return user;
     }
-
+    @Override
     public void register(String account, String password, String code) throws Exception {
         if (TextUtils.isEmpty(account)) {
             ExceptionMap.FAIL_EXCEPTION("账号不能为空！");
@@ -53,11 +54,11 @@ public class UserServiceImpl implements UserService {
         user.setUpdatetime(DateUtils.currentTime());
         userMapper.insertSelective(user);
     }
-
+    @Override
     public void forgetPassWord(String account, String password, String code) {
 
     }
-
+    @Override
     public void updateUserInfo(String headImg, String defaultAddressId, Integer sex) {
 
     }

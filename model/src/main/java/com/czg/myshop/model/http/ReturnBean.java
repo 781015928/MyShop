@@ -6,7 +6,9 @@ import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 
+import io.swagger.annotations.ApiModel;
 
+@ApiModel
 public class ReturnBean<T> implements Serializable {
     private static final Logger logger = LoggerFactory.getLogger(ReturnBean.class);
 

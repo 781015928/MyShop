@@ -17,8 +17,8 @@
         <spring.version>4.3.2.RELEASE</spring.version>
 
         <moudle.version>1.0</moudle.version>
-        <fastjson.version>1.2.11</fastjson.version>
-
+        <fastjson.version>1.2.24</fastjson.version>
+        <jackson.version>2.4.4</jackson.version>
     </properties>
 
     <dependencies>
@@ -189,7 +189,11 @@
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.7.0</version>
+        </dependency>
         <!-- mybatis pager -->
 
         <dependency>
@@ -209,7 +213,35 @@
             <artifactId>jsqlparser</artifactId>
             <version>0.9.4</version>
         </dependency>
+
+        <!--swagger-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.6.1</version>
+        </dependency>
+        <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger-ui</artifactId>
+        <version>2.6.1</version>
+        </dependency>
+
+
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
     <modules>
         <module>admin</module>
         <module>web</module>
