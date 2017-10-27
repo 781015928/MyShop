@@ -22,7 +22,7 @@ public interface AddressService {
      * @param street
      * @param regionId
      */
-    void editAddress(int id, String phone, String name, String street, int regionId,int defult);
+    void editAddress(int uid,int id, String phone, String name, String street, int regionId,int defult);
 
     /**
      * @param id 删除收货地址

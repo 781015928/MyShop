@@ -2,13 +2,10 @@ package com.czg;
 
 import com.alibaba.fastjson.JSON;
 import com.czg.myshop.common.utils.date.DateUtils;
-import com.czg.myshop.common.utils.security.MD5;
 import com.czg.myshop.dao.ProductMapper;
 import com.czg.myshop.dao.RegionMapper;
-import com.czg.myshop.dao.UserMapper;
 import com.czg.myshop.model.entiy.Product;
 import com.czg.myshop.model.entiy.Region;
-import com.czg.myshop.model.entiy.User;
 import com.czg.myshop.model.page.Page;
 import com.czg.myshop.model.page.PageBean;
 import com.github.pagehelper.PageHelper;
@@ -40,24 +37,7 @@ public class UserMapperTest {
         applicationContext = new ClassPathXmlApplicationContext("classpath:applicationContext-dao.xml");
     }
 
-    @Test
-    public void testFindUserById() throws Exception {
 
-        UserMapper userDao = (UserMapper) applicationContext.getBean("productMapper");
-
-        //调用userDao的方法
-        User user = userDao.selectByPrimaryKey(1);
-        user = new User();
-        user.setAccount("222222");
-        user.setPassword(MD5.md5_salt("1111"));
-        user.setEmail("111");
-        user.setPhone("111");
-        user.setCreatetime(DateUtils.currentTime());
-        user.setUpdatetime(DateUtils.currentTime());
-        userDao.insertSelective(user);
-        System.out.println(user);
-
-    }
     @Test
     public void testPage() throws Exception {
         ProductMapper productMapper = (ProductMapper) applicationContext.getBean("productMapper");

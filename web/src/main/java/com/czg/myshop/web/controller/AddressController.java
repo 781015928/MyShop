@@ -47,8 +47,8 @@ public class AddressController {
     @ResponseBody
     @ApiOperation(value = "编辑收货地址")
     @RequestMapping(value = "/editAddress", method = RequestMethod.POST)
-    public ReturnBean<String> editAddress(Integer id, String phone, String name, String street, Integer regionId,Integer defult) {
-        addressService.editAddress(id, phone, name, street, regionId,defult);
+    public ReturnBean<String> editAddress(Integer uid,Integer id, String phone, String name, String street, Integer regionId,Integer defult) {
+        addressService.editAddress(uid,id, phone, name, street, regionId,defult);
         return ReturnMap.SUCCESS("");
     }
 

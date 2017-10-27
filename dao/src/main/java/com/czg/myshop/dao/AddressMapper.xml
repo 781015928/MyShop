@@ -104,7 +104,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.czg.myshop.model.entiy.Address" >
+  <insert id="insert" parameterType="com.czg.myshop.model.entiy.Address" useGeneratedKeys="true" keyProperty="id">
     insert into t_address (id, uid, createtime, 
       updatetime, deletestate, phone, 
       name, street, region_id

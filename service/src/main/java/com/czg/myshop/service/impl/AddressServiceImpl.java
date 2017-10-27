@@ -63,21 +63,16 @@ public class AddressServiceImpl implements AddressService {
         address.setRegionId(regionId);
         address.setUpdatetime(DateUtils.currentTime());
         address.setCreatetime(DateUtils.currentTime());
-        User user = userMapper.selectByPrimaryKey(uid);
-        if (user.getDefaultAddressId() == null || user.getDefaultAddressId() == 0) {
-
-
-        } else {
-
-
-        }
-
-
         addressMapper.insert(address);
+        if (defult == 0) {
+            User user = userMapper.selectByPrimaryKey(uid);
+            user.setDefaultAddressId(address.getId());
+            userMapper.updateByPrimaryKey(user);
+        }
     }
 
     @Override
-    public void editAddress(int id, String phone, String name, String street, int regionId, int defult) {
+    public void editAddress(int uid,int id, String phone, String name, String street, int regionId, int defult) {
         Address address = addressMapper.selectByPrimaryKey(id);
         if (address == null) {
             ExceptionMap.FAIL_EXCEPTION("该地址不存在!");
@@ -101,6 +96,11 @@ public class AddressServiceImpl implements AddressService {
         address.setName(name);
         address.setStreet(street);
         address.setUpdatetime(DateUtils.currentTime());
+        if (defult == 0) {
+            User user = userMapper.selectByPrimaryKey(uid);
+            user.setDefaultAddressId(address.getId());
+            userMapper.updateByPrimaryKey(user);
+        }
         addressMapper.updateByPrimaryKey(address);
     }
 
