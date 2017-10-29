@@ -1,6 +1,7 @@
 package com.czg.myshop.service;
 
 import com.czg.myshop.model.entiy.User;
+import com.czg.myshop.model.page.PageBean;
 
 public interface UserService {
 
@@ -34,6 +35,15 @@ public interface UserService {
      * @param sex      更新用户信息
      */
     void updateUserInfo(String headImg, String defaultAddressId, Integer sex);
+
+
+    /**
+     * @param uid 管理员id
+     * @param pageNum  分页下标
+     * @param pageSize  分页个数
+     * @return
+     */
+    PageBean<User> getUserList(int uid,int pageNum, int pageSize);
 
 
 }

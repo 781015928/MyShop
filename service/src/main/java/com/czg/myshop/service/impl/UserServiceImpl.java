@@ -4,11 +4,15 @@ import com.czg.myshop.common.utils.date.DateUtils;
 import com.czg.myshop.common.utils.security.MD5;
 import com.czg.myshop.common.utils.valid.RegexUtils;
 import com.czg.myshop.common.utils.valid.TextUtils;
+import com.czg.myshop.dao.AdminMapper;
 import com.czg.myshop.dao.UserMapper;
+import com.czg.myshop.model.entiy.AdminExample;
 import com.czg.myshop.model.entiy.User;
+import com.czg.myshop.model.entiy.UserExample;
 import com.czg.myshop.model.exception.ExceptionMap;
+import com.czg.myshop.model.page.Page;
+import com.czg.myshop.model.page.PageBean;
 import com.czg.myshop.service.UserService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +21,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    AdminMapper adminMapper;
 
     @Override
     public User login(String account, String password, String imgCode) throws Exception {
@@ -31,6 +37,7 @@ public class UserServiceImpl implements UserService {
 
         return user;
     }
+
     @Override
     public void register(String account, String password, String code) throws Exception {
         if (TextUtils.isEmpty(account)) {
@@ -54,12 +61,22 @@ public class UserServiceImpl implements UserService {
         user.setUpdatetime(DateUtils.currentTime());
         userMapper.insertSelective(user);
     }
+
     @Override
     public void forgetPassWord(String account, String password, String code) {
 
     }
+
     @Override
     public void updateUserInfo(String headImg, String defaultAddressId, Integer sex) {
 
+    }
+
+    @Override
+    public PageBean<User> getUserList(int uid, int pageNum, int pageSize) {
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andDeletestateEqualTo(0);
+        Page.startPage(pageNum, pageSize);
+        return Page.getPage(userMapper.selectByExample(userExample));
     }
 }
