@@ -124,7 +124,7 @@
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.czg.myshop.model.entiy.User">
+    <insert id="insert" parameterType="com.czg.myshop.model.entiy.User" useGeneratedKeys="true" keyProperty="id">
     insert into t_user (id, account, password, 
       email, phone, headimg, 
       default_address_id, sex, email_state, 

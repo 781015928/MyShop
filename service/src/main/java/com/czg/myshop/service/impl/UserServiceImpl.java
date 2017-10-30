@@ -6,6 +6,7 @@ import com.czg.myshop.common.utils.valid.RegexUtils;
 import com.czg.myshop.common.utils.valid.TextUtils;
 import com.czg.myshop.dao.AdminMapper;
 import com.czg.myshop.dao.UserMapper;
+import com.czg.myshop.model.entiy.Admin;
 import com.czg.myshop.model.entiy.AdminExample;
 import com.czg.myshop.model.entiy.User;
 import com.czg.myshop.model.entiy.UserExample;
@@ -13,8 +14,11 @@ import com.czg.myshop.model.exception.ExceptionMap;
 import com.czg.myshop.model.page.Page;
 import com.czg.myshop.model.page.PageBean;
 import com.czg.myshop.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -74,6 +78,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public PageBean<User> getUserList(int uid, int pageNum, int pageSize) {
+        AdminExample adminExample = new AdminExample();
+        adminExample.createCriteria().andUidEqualTo(uid);
+        List<Admin> admins = adminMapper.selectByExample(adminExample);
+        if (admins == null || admins.isEmpty()) {
+            ExceptionMap.FAIL_EXCEPTION("权限不足！");
+        }
         UserExample userExample = new UserExample();
         userExample.createCriteria().andDeletestateEqualTo(0);
         Page.startPage(pageNum, pageSize);

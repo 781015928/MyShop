@@ -11,7 +11,10 @@
 
 
 
-
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
     <!--<bean-->
     <!--class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>-->
     <!--<bean-->
@@ -36,20 +39,18 @@
 
     <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
-
+    <mvc:resources mapping="/images/**" location="/images/"/>
     <bean class="springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration" id="swaggerConfig"/>
 
 
     <context:component-scan base-package="com.czg.myshop.web.controller" ></context:component-scan>
+    <context:component-scan base-package="com.czg.myshop.admin.controller" ></context:component-scan>
+    <context:component-scan base-package="com.czg.myshop.admin.service.impl" ></context:component-scan>
 
     <bean class="com.czg.myshop.common.SwaggerConfig" />
 
 
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="WEB-INF/jsp/"/>
-        <property name="suffix" value=".jsp"/>
 
-    </bean>
     <bean class="com.czg.myshop.web.exception.ExceptionResolver"/>
 
     <!--<bean id="conversionService"-->

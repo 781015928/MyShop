@@ -113,7 +113,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.czg.myshop.model.entiy.Order" >
+  <insert id="insert" parameterType="com.czg.myshop.model.entiy.Order" useGeneratedKeys="true" keyProperty="id">
     insert into t_order (id, uid, address_id, 
       product_id, createtime, updatetime, 
       deletestate, product_spec_id, count, 

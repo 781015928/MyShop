@@ -9,11 +9,11 @@ public class Admin {
 
     private Integer deletestate;
 
+    private Integer uid;
+
     private String level;
 
     private Float money;
-
-    private String uid;
 
     public Integer getId() {
         return id;
@@ -47,6 +47,14 @@ public class Admin {
         this.deletestate = deletestate;
     }
 
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
+
     public String getLevel() {
         return level;
     }
@@ -61,13 +69,5 @@ public class Admin {
 
     public void setMoney(Float money) {
         this.money = money;
-    }
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid == null ? null : uid.trim();
     }
 }

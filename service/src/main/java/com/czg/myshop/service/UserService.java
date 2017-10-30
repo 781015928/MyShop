@@ -46,4 +46,6 @@ public interface UserService {
     PageBean<User> getUserList(int uid,int pageNum, int pageSize);
 
 
+
+
 }

@@ -48,7 +48,12 @@ public class ExceptionResolver implements HandlerExceptionResolver {
             view.setAttributesMap(attributes);
             mv.setView(view);
         } else {
-
+            String requestURI = request.getRequestURI();
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("redirect:/" + requestURI);
+            modelAndView.addObject("responseInfo", returnBean);
+            return modelAndView;
+            //  return modelAndView;
         }
 
 
